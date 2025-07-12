@@ -29,8 +29,7 @@ export default function Header() {
             {/* Subheading */}
             <p className="mt-4 md:max-w-3xl text-gray-400 text-base md:text-lg">
                 Truefolio helps freelancers build beautiful, client-reviewed portfolios
-                that prove credibility, build trust, and help you get hired — faster.
-                Join now and get early access for 60% off — for life.
+                that prove credibility, build trust, and help you get hired — faster
             </p>
 
             {/* CTA */}
