@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Loader2, Github, Mail, LogIn, ShieldCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { toast } from "sonner"
 
 export default function SignInPage() {
     const [email, setEmail] = useState("")
@@ -21,21 +22,22 @@ export default function SignInPage() {
             });
         },
         onSuccess: () => {
-            alert("Magic link sent! Check your email.")
+            toast.success("Magic link sent! Check your email.")
         },
         onError: () => {
-            alert("Something went wrong.")
+            toast.error("Something went wrong.")
         },
     })
 
     const providerMutation = useMutation({
         mutationFn: async (provider: "google" | "github") => {
-            const data = await authClient.signIn.social({
-                provider
+            await authClient.signIn.social({
+                provider,
+                callbackURL: "/dashboard"
             })
         },
         onError: () => {
-            alert("OAuth sign-in failed.")
+            toast.success("OAuth sign-in failed.")
         },
     })
 
