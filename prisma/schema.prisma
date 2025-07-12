@@ -68,3 +68,11 @@ model Verification {
 
   @@map("verification")
 }
+
+model EarlyAccessUser {
+  id String @id @default(uuid())
+
+  email String
+  
+  joinedOn DateTime @default(now())
+}
