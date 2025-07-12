@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
 import SecureYourSpotModal from "@/components/landing/modals/SecureYourSpotModal"
 
@@ -25,9 +25,9 @@ export default function MobileNavbar() {
 
                 <SheetContent side="right" className="bg-[#1D1D1D] text-white w-full h-full flex flex-col justify-between">
                     <SheetHeader>
-                        <div className="text-xl font-bold">
+                        <SheetTitle className="text-xl font-bold text-white">
                             truefolio<span className="text-blue-600">.cv</span>
-                        </div>
+                        </SheetTitle>
                     </SheetHeader>
 
                     <div className="flex flex-col gap-6 mt-8 text-gray-300 font-medium px-4">
