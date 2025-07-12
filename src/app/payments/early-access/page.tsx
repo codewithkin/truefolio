@@ -1,20 +1,26 @@
-"use client";
+"use client"
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, Loader2 } from 'lucide-react'
 import { sendEmail } from './actions'
 
 export default function EarlyAccessPage() {
     const [email, setEmail] = useState('')
     const [submitted, setSubmitted] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        await sendEmail(email)
-        setSubmitted(true)
+        setLoading(true)
+        try {
+            await sendEmail(email)
+            setSubmitted(true)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -36,7 +42,16 @@ export default function EarlyAccessPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <Button size="lg" type="submit" className="w-full">Complete Signup</Button>
+                    <Button size="lg" type="submit" className="w-full" disabled={loading}>
+                        {loading ? (
+                            <span className="flex items-center justify-center gap-2">
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                                Sending...
+                            </span>
+                        ) : (
+                            'Complete Signup'
+                        )}
+                    </Button>
                 </form>
             ) : (
                 <div className="flex flex-col items-center gap-2">

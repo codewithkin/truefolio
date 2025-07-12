@@ -20,7 +20,7 @@ function SecureYourSpotModal({ whiteBg }: { whiteBg?: boolean }) {
                     Secure your spot
                 </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="overflow-y-scroll h-full">
                 <DialogHeader className="text-center">
                     <DialogTitle className="text-xl font-semibold text-center">
                         Secure your spot on <span className="text-blue-600">Truefolio</span>
