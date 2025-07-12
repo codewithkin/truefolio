@@ -27,7 +27,7 @@ function SecureYourSpotModal({ whiteBg }: { whiteBg?: boolean }) {
                     </DialogTitle>
                     <DialogDescription className="text-sm mt-2 flex flex-col justify-center items-center">
                         <Badge variant="outline" className="text-blue-600 border-blue-600 bg-blue-50">
-                            🎉 60% off for life if you join early!
+                            🎉 30% off for life if you join early!
                         </Badge>
                         <span className="text-center">
                             We’re opening early access to a limited number of freelancers. Get your custom subdomain, showcase your work, and stand out from the crowd
@@ -63,7 +63,7 @@ function SecureYourSpotModal({ whiteBg }: { whiteBg?: boolean }) {
                             </li>
                         </ul>
                         <div className="mt-auto pt-4">
-                            <p className="font-semibold text-lg">$18/month</p>
+                            <p className="font-semibold text-lg">$30/month</p>
                             <Button size="lg" disabled={true} variant="outline" className="mt-2 w-full">Coming Soon</Button>
                         </div>
                     </div>
@@ -71,7 +71,7 @@ function SecureYourSpotModal({ whiteBg }: { whiteBg?: boolean }) {
                     {/* Early Bird Plan */}
                     <div className="border border-blue-600 bg-blue-50 rounded-xl p-4 flex flex-col gap-2">
                         <h3 className="text-lg font-medium text-blue-700">Early Bird Access</h3>
-                        <p className="text-sm text-blue-700">Save over 60% and help shape the product.</p>
+                        <p className="text-sm text-blue-700">Save over 30% and help shape the product.</p>
                         <ul className="text-sm mt-2 flex flex-col gap-1">
                             <li className="flex gap-2 items-center">
                                 <CheckCircle2 className="text-blue-500" size={17} />
@@ -91,12 +91,12 @@ function SecureYourSpotModal({ whiteBg }: { whiteBg?: boolean }) {
                             </li>
                             <li className="flex gap-2 items-center">
                                 <CheckCircle2 className="text-blue-500" size={17} />
-                                60% off for life
+                                30% off for life
                             </li>
                         </ul>
                         <div className="mt-auto pt-4">
-                            <p className="font-medium text-sm text-gray-500 line-through">$18/month</p>
-                            <p className="font-bold text-2xl text-blue-700">$6/month</p>
+                            <p className="font-medium text-sm text-gray-500 line-through">$30/month</p>
+                            <p className="font-bold text-2xl text-blue-700">$21/month</p>
                             <Button size="lg" asChild className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white">
                                 <Link target="_blank" href="https://www.creem.io/test/payment/prod_4INSLrJXEs4qB8wbEQO8K6">
                                     Join Early Bird
