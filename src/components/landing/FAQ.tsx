@@ -28,7 +28,7 @@ const faqs = [
 
 export default function FaqSection() {
     return (
-        <section id="faq" className="py-20 px-4 md:px-8 bg-[#0F0F0F] text-white">
+        <section id="faq" className="py-20 px-4 md:px-8">
             <div className="max-w-4xl mx-auto text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export default function FaqSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-gray-400 max-w-2xl mx-auto mb-12"
+                    className=" max-w-2xl mx-auto mb-12 text-gray-400"
                 >
                     Everything you need to know before securing your early access to truefolio.
                 </motion.p>
@@ -51,8 +51,8 @@ export default function FaqSection() {
             <div className="max-w-3xl mx-auto">
                 <Accordion type="single" collapsible className="space-y-4">
                     {faqs.map((faq, idx) => (
-                        <AccordionItem key={idx} value={`faq-${idx}`} className="border border-white/10 rounded-xl px-4">
-                            <AccordionTrigger className="text-left text-lg font-medium text-white hover:text-blue-400 transition">
+                        <AccordionItem key={idx} value={`faq-${idx}`} className="border border-gray-300 rounded-xl px-4">
+                            <AccordionTrigger className="text-left text-lg font-medium transition">
                                 {faq.question}
                             </AccordionTrigger>
                             <AccordionContent className="text-sm text-gray-400 mt-2">
