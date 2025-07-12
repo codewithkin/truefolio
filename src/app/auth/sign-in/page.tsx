@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator"
 import { Loader2, Github, Mail, LogIn, ShieldCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
+import Image from "next/image"
 
 export default function SignInPage() {
     const [email, setEmail] = useState("")
@@ -42,10 +43,17 @@ export default function SignInPage() {
     })
 
     return (
-        <main className="min-h-screen flex items-center justify-center bg-[#1D1D1D] px-4">
+        <main className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-sky-400 to-purple-500 px-4">
             <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
-                <div className="text-center space-y-1">
-                    <h1 className="text-2xl font-bold text-[#1D1D1D]">Welcome back</h1>
+                <div className="text-center space-y-1 flex flex-col justify-center items-center">
+                    <Image
+                        className="rounded-full"
+                        src="/icons/icon.jpg"
+                        width={60}
+                        height={60}
+                        alt="Truefolio logo"
+                    />
+                    <h1 className="text-2xl font-bold text-[#1D1D1D]">Welcome back to <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">Truefolio</span></h1>
                     <p className="text-sm text-gray-500">Sign in to continue to Truefolio</p>
                 </div>
 
