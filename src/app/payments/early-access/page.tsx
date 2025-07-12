@@ -1,4 +1,4 @@
-import { useSearchParams } from 'next/navigation'
+"use client";
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -36,7 +36,7 @@ export default function EarlyAccessPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <Button type="submit" className="w-full">Complete Signup</Button>
+                    <Button size="lg" type="submit" className="w-full">Complete Signup</Button>
                 </form>
             ) : (
                 <div className="flex flex-col items-center gap-2">
