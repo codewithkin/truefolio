@@ -19,14 +19,14 @@ export default function Header() {
             </h1>
 
             {/* Subheading */}
-            <p className="mt-6 md:max-w-3xl text-gray-400 text-base md:text-lg">
+            <p className="mt-4 md:max-w-3xl text-gray-400 text-base md:text-lg">
                 Truefolio helps freelancers build beautiful, client-reviewed portfolios
                 that prove credibility, build trust, and help you get hired — faster.
                 Join now and get early access for 60% off — for life.
             </p>
 
             {/* CTA */}
-            <div className="mt-10">
+            <div className="mt-4">
                 <SecureYourSpotModal whiteBg={true} />
             </div>
         </motion.header>
