@@ -1,12 +1,13 @@
 'use server'
 
+import { prisma } from '@/helpers/prisma';
 import nodemailer from 'nodemailer'
 
 export async function sendEmail(email: string) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.SMTP_USER, 
+      user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
     },
   })
@@ -33,5 +34,12 @@ export async function sendEmail(email: string) {
     `,
   }
 
-  await transporter.sendMail(mailOptions)
+  await transporter.sendMail(mailOptions);
+
+  // Create the user in the db
+  await prisma.earlyAccessUser.create({
+    data: {
+      email
+    }
+  });
 }
