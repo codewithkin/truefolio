@@ -16,7 +16,7 @@ function SecureYourSpotModal() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
                     Secure your spot
                 </Button>
             </DialogTrigger>
@@ -64,7 +64,7 @@ function SecureYourSpotModal() {
                         </ul>
                         <div className="mt-auto pt-4">
                             <p className="font-semibold text-lg">$18/month</p>
-                            <Button disabled={true} variant="outline" className="mt-2 w-full">Coming Soon</Button>
+                            <Button size="lg" disabled={true} variant="outline" className="mt-2 w-full">Coming Soon</Button>
                         </div>
                     </div>
 
@@ -97,7 +97,7 @@ function SecureYourSpotModal() {
                         <div className="mt-auto pt-4">
                             <p className="font-medium text-sm text-gray-500 line-through">$18/month</p>
                             <p className="font-bold text-2xl text-blue-700">$6/month</p>
-                            <Button asChild className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white">
+                            <Button size="lg" asChild className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white">
                                 <Link target="_blank" href="https://www.creem.io/test/payment/prod_4INSLrJXEs4qB8wbEQO8K6">
                                     Join Early Bird
                                 </Link>
