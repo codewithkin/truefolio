@@ -16,7 +16,7 @@ function SecureYourSpotModal() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
+                <Button size="lg" className="bg-white text-[#1D1D1D] hover:bg-slate-200">
                     Secure your spot
                 </Button>
             </DialogTrigger>
