@@ -12,11 +12,11 @@ import React from "react"
 import { CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 
-function SecureYourSpotModal() {
+function SecureYourSpotModal({ whiteBg }: { whiteBg?: boolean }) {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button size="lg" className="bg-white text-[#1D1D1D] hover:bg-slate-200">
+                <Button size="lg" className={`${!whiteBg ? "bg-white text-[#1D1D1D] hover:bg-slate-200" : "bg-gradient-to-r from-blue-400 to-blue-700 hover:from-blue-600 transition duration-300 hover:to-sky-800 text-white border-2 border-blue-200"}`}>
                     Secure your spot
                 </Button>
             </DialogTrigger>
