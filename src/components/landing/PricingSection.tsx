@@ -35,14 +35,14 @@ export default function PricingSection() {
                     >
                         <div className="mb-4">
                             <h3 className="text-xl font-bold text-white">Early Bird Access</h3>
-                            <p className="text-sm text-white/80">Limited slots – only $6/month for life</p>
+                            <p className="text-sm text-white/80">Limited slots – only $21/month for life</p>
                         </div>
-                        <div className="text-white text-3xl font-bold mb-4">$6<span className="text-sm font-normal">/month</span></div>
+                        <div className="text-white text-3xl font-bold mb-4">$21<span className="text-sm font-normal">/month</span></div>
                         <ul className="space-y-2 text-sm text-white/90 mb-6">
                             <li className="flex items-center gap-2"><BadgeCheck size={16} /> 1-on-1 feedback calls</li>
                             <li className="flex items-center gap-2"><BadgeCheck size={16} /> Priority support</li>
                             <li className="flex items-center gap-2"><BadgeCheck size={16} /> Feature request voting</li>
-                            <li className="flex items-center gap-2"><BadgeCheck size={16} /> Lifetime 66% discount</li>
+                            <li className="flex items-center gap-2"><BadgeCheck size={16} /> Lifetime 30% discount</li>
                         </ul>
                         <SecureYourSpotModal />
                     </motion.div>
@@ -58,7 +58,7 @@ export default function PricingSection() {
                             <h3 className="text-xl font-bold text-white/90">Regular Access</h3>
                             <p className="text-sm text-gray-400">Available after launch</p>
                         </div>
-                        <div className="text-white text-3xl font-bold mb-4">$18<span className="text-sm font-normal">/month</span></div>
+                        <div className="text-white text-3xl font-bold mb-4">$30<span className="text-sm font-normal">/month</span></div>
                         <ul className="space-y-2 text-sm text-gray-400 mb-6">
                             <li className="flex items-center gap-2"><Clock size={16} /> No early bird benefits</li>
                             <li className="flex items-center gap-2"><TrendingUp size={16} /> Standard support</li>
