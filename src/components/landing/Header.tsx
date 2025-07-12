@@ -15,8 +15,16 @@ export default function Header() {
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 Portfolios that speak for you.
                 <br className="hidden md:block" />
-                Built for freelancers, powered by client feedback.
+                Built for{' '}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    freelancers
+                </span>
+                , powered by client{' '}
+                <span className="bg-gradient-to-r from-blue-400 to-green-500 bg-clip-text text-transparent">
+                    feedback
+                </span>
             </h1>
+
 
             {/* Subheading */}
             <p className="mt-4 md:max-w-3xl text-gray-400 text-base md:text-lg">
