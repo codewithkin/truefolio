@@ -4,6 +4,7 @@ import MobileNavbar from "@/components/shared/landing/Mobilenavbar"
 import Header from "@/components/landing/Header"
 import FeaturesSection from "@/components/landing/FeaturesSection"
 import PricingSection from "@/components/landing/PricingSection"
+import FaqSection from "@/components/landing/FAQ"
 
 function Landing() {
   return (
@@ -13,6 +14,7 @@ function Landing() {
       <Header />
       <FeaturesSection />
       <PricingSection />
+      <FaqSection />
       <Footer />
     </main>
   )
