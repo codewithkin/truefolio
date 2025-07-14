@@ -1,7 +1,7 @@
 import Step1 from "@/components/main/onboarding/Step1"
-import Step2 from "@/components/main/onboarding/Step2"
-import Step3 from "@/components/main/onboarding/Step3"
-import Step4 from "@/components/main/onboarding/Step4"
+import Step2Form from "@/components/main/onboarding/Step2"
+import Step3Form, { Props } from "@/components/main/onboarding/Step3"
+import Step4Form from "@/components/main/onboarding/Step4"
 import {
     CircleUser,
     Briefcase,
@@ -14,7 +14,7 @@ type OnboardingStep = {
     title: string,
     icon: any,
     description?: string,
-    form: () => JSX.Element,
+    form: ({ onNext }: Props) => Element,
     message?: string
 }
 
@@ -32,7 +32,7 @@ export const onboardingSteps: OnboardingStep[] = [
         title: "What do you do?",
         icon: Briefcase,
         description: "Select the services you offer, your professional role, and years of experience.",
-        form: Step2,
+        form: Step2Form,
         message: "Showcase your core expertise to potential clients or employers."
     },
     {
@@ -40,7 +40,7 @@ export const onboardingSteps: OnboardingStep[] = [
         title: "Where are you located?",
         icon: MapPin,
         description: "Your location helps with visibility in relevant regions.",
-        form: Step3,
+        form: Step3Form,
         message: "This improves discovery for region-specific opportunities."
     },
     {
@@ -48,7 +48,7 @@ export const onboardingSteps: OnboardingStep[] = [
         title: "Set your hourly rate",
         icon: DollarSign,
         description: "Let others know your availability and what you typically charge.",
-        form: Step4,
+        form: Step4Form,
         message: "You can always change this later."
     },
 ]
