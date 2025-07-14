@@ -150,8 +150,8 @@ model Project {
   client  Client @relation(name: "ProjectClient", fields: [clientId], references: [id])
   clientId String
 
-  user  Portfolio @relation(name: "Owner", fields: [userId], references: [id])
-  userId  String
+  portfolio  Portfolio @relation(name: "Owner", fields: [portfolioId], references: [id])
+  portfolioId  String
 
   services  Service[]
 
