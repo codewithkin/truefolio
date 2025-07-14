@@ -98,7 +98,7 @@ function SecureYourSpotModal({ whiteBg }: { whiteBg?: boolean }) {
                             <p className="font-medium text-sm text-gray-500 line-through">$30/month</p>
                             <p className="font-bold text-2xl text-blue-700">$21/month</p>
                             <Button size="lg" asChild className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white">
-                                <Link target="_blank" href={process.env.CREEM_URL || ""}>
+                                <Link target="_blank" href="https://www.creem.io/payment/prod_6ns3XjRshLgdv0EM4xJLjx">
                                     Join Early Bird
                                 </Link>
                             </Button>
