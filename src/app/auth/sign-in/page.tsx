@@ -41,11 +41,6 @@ export default function SignInPage() {
         },
         onError: () => {
             toast.success("OAuth sign-in failed.")
-        },
-        onSuccess: async () => {
-            toast.success("Magic link sent!", {
-                description: "Please complete your payments then check your email for the sign in link"
-            });
         }
     })
 
