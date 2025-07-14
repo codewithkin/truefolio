@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Loader2, Github, Mail, LogIn, ShieldCheck } from "lucide-react"
-import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 import Image from "next/image"
 
@@ -19,11 +18,13 @@ export default function SignInPage() {
         mutationFn: async () => {
             const { data, error } = await authClient.signIn.magicLink({
                 email,
-                callbackURL: "/dashboard",
+                callbackURL: "/payments",
             });
         },
-        onSuccess: () => {
-            toast.success("Magic link sent! Check your email.")
+        onSuccess: async () => {
+            toast.success("Magic link sent!", {
+                description: "Please complete your payments then check your email for the sign in link"
+            });
         },
         onError: () => {
             toast.error("Something went wrong.")
@@ -34,12 +35,18 @@ export default function SignInPage() {
         mutationFn: async (provider: "google" | "github") => {
             await authClient.signIn.social({
                 provider,
+                newUserCallbackURL: "/payments",
                 callbackURL: "/dashboard"
             })
         },
         onError: () => {
             toast.success("OAuth sign-in failed.")
         },
+        onSuccess: async () => {
+            toast.success("Magic link sent!", {
+                description: "Please complete your payments then check your email for the sign in link"
+            });
+        }
     })
 
     return (

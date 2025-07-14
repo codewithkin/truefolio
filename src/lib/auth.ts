@@ -40,9 +40,9 @@ export const auth = betterAuth({
                 checkout({
                     products: [
                         {
-                            productId: "123-456-789", // ID of Product from Polar Dashboard
-                            slug: "pro" // Custom slug for easy reference in Checkout URL, e.g. /checkout/pro
-                        }
+                            productId: "c7d2c669-909b-4002-bedc-44668ec61bed",
+                            slug: "Truefolio"
+                        },
                     ],
                     successUrl: "/payments/success?checkout_id={CHECKOUT_ID}",
                     authenticatedUsersOnly: true
