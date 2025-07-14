@@ -13,6 +13,7 @@ model User {
   id            String    @id
   name          String
   email         String
+  about String?
   emailVerified Boolean
   image         String?
   createdAt     DateTime
@@ -20,8 +21,74 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  hourlyRate  Int?
+  role  String?
+
+  portfolio Portfolio? @relation(name: "UserPortfolio")
+  portfolioId String?
+
+  testimonials  Testimonial[] @relation(name: "User")
+
+  location  String?
+
+  services  Service[]
+
+  clients Client[] @relation(name: "ProjectClient")
+
   @@unique([email])
   @@map("user")
+}
+
+model Service {
+  id String @id @default(uuid())
+
+  name   String
+  slug  String
+  icon  String
+
+  experience  Int // Experience out of 5
+
+  users User[]
+  projects Project[]
+
+  createdOn DateTime @default(now())
+}
+
+model Portfolio {
+  id            String    @id @default(uuid())
+
+  user  User @relation(name: "UserPortfolio", fields: [userId], references: [id])
+  userId  String @unique
+
+  view  View[] @relation(name: "PortfolioView")
+  projects  Project[] @relation(name: "Owner")
+
+  createdAt DateTime @default(now())
+}
+
+model View {
+  id String @id @default(uuid())
+
+  location String 
+  device  String
+
+  portfolio  Portfolio @relation(name: "PortfolioView", fields: [portfolioId], references: [id])
+  portfolioId  String
+
+  time  DateTime @default(now())
+}
+
+model ProjectView {
+  id String @id @default(uuid())
+
+  location String 
+  device  String
+
+  project  Project @relation(name: "ProjectViews", fields: [projectid], references: [id])
+  projectid  String
+
+  time  DateTime @default(now())
+
 }
 
 model Session {
@@ -75,4 +142,86 @@ model EarlyAccessUser {
   email String
   
   joinedOn DateTime @default(now())
+}
+
+model Project {
+  id String @id @default(uuid()) @unique
+
+  client  Client @relation(name: "ProjectClient", fields: [clientId], references: [id])
+  clientId String
+
+  user  Portfolio @relation(name: "Owner", fields: [userId], references: [id])
+  userId  String
+
+  services  Service[]
+
+  projectViews  ProjectView[] @relation(name: "ProjectViews")
+
+  name  String
+  slug String @unique
+  description String
+  richDescription Json?
+  status  String @default("in_progress") // in_progress, under_review, complete, abandoned
+
+  views Int
+
+  isFeatured Boolean @default(false)
+  published Boolean @default(false)
+
+  headerImage String?
+  profileImage  String?
+
+  images  String[]
+
+  projectTestimonial Testimonial? @relation(name: "Project")
+
+  price Int? // Optional cause some people aren't comfortable sharing this info
+
+  startDate DateTime
+  endDate   DateTime? // Optional because it might be ongoing
+}
+
+model Link {
+  id String @id @default(uuid())
+
+  name  String?
+  url String  
+  icon  String?
+
+  createdAt  DateTime @default(now())
+}
+
+model Testimonial {
+  id String @id @default(ulid())
+
+  client  Client @relation(name: "Client", fields: [clientId], references: [id])
+  clientId  String
+
+  user  User @relation(name: "User", fields: [userId], references: [id])
+  userId  String
+
+  text  String
+
+  review  Int // Number of stars out of 5
+
+  project Project @relation(name: "Project", fields: [projectId], references: [id])
+  projectId String @unique
+
+  createdOn DateTime @default(now())
+}
+
+model Client {
+  id String @id @default(uuid())
+
+  name  String @default("Anonymous")
+  role  String
+  email String?
+  image String?
+
+  users  User[] @relation(name: "ProjectClient")
+
+  testimonials  Testimonial[] @relation(name: "Client")
+  projects  Project[] @relation(name: "ProjectClient")
+
+  createdAt DateTime @default(now())
 }
