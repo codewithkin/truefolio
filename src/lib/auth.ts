@@ -6,7 +6,6 @@ import { sendMagicLink } from "@/helpers/email/sendVerificationLink";
 
 import { polar, checkout, portal, usage, webhooks } from "@polar-sh/better-auth";
 import { Polar } from "@polar-sh/sdk";
-import { updateUserPlan } from "@/actions/payments/updateUserPlan";
 
 const polarClient = new Polar({
     accessToken: process.env.POLAR_ACCESS_TOKEN,
