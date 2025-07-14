@@ -10,18 +10,33 @@ import { CheckCircle2, Lock } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useRouter } from "next/navigation";
 
 export default function PaymentsPage() {
     const [user, setUser] = useState<any>(null);
+    const [loadingUser, setLoadingUser] = useState(true);
+    const [notLoggedIn, setNotLoggedIn] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         const fetchUser = async () => {
-            const session = await (await authClient.getSession()).data;
+            try {
+                const session = await (await authClient.getSession()).data;
 
-            if (!session?.user?.id) return;
+                if (!session?.user?.id) {
+                    // User is not logged in — handle gracefully
+                    setNotLoggedIn(true);
+                    setLoadingUser(false);
+                    return;
+                }
 
-            const res = await axios.get(`/api/user?id=${session.user.id}`);
-            setUser(res.data);
+                const res = await axios.get(`/api/user?id=${session.user.id}`);
+                setUser(res.data);
+                setLoadingUser(false);
+            } catch (error) {
+                setLoadingUser(false);
+                setNotLoggedIn(true);
+            }
         };
 
         fetchUser();
@@ -38,7 +53,7 @@ export default function PaymentsPage() {
         },
     });
 
-    if (!user) {
+    if (loadingUser) {
         return (
             <main className="min-h-screen w-full flex flex-col gap-2 items-center justify-center">
                 <Card className="w-fit min-w-[340px]">
@@ -52,8 +67,23 @@ export default function PaymentsPage() {
         );
     }
 
-    if (user.plan !== "unpaid") {
-        window.location.href = "/dashboard";
+    if (notLoggedIn) {
+        return (
+            <main className="min-h-screen w-full flex flex-col gap-4 items-center justify-center px-4">
+                <Card className="max-w-md w-full text-center p-8">
+                    <Lock className="mx-auto mb-4 text-gray-500 w-12 h-12" />
+                    <h2 className="text-xl font-semibold mb-2">Not Logged In</h2>
+                    <p className="mb-6 text-muted-foreground">
+                        You must be logged in to access the payments page.
+                    </p>
+                    <Button onClick={() => router.push("/login")}>Go to Login</Button>
+                </Card>
+            </main>
+        );
+    }
+
+    if (user?.plan !== "unpaid") {
+        router.push("/dashboard");
         return null;
     }
 

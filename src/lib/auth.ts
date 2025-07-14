@@ -27,15 +27,6 @@ export const auth = betterAuth({
         polar({
             client: polarClient,
             createCustomerOnSignUp: true,
-            onSuccess: async ({ userId, subscription }: {
-                userId: string, subscription: {
-                    plan: {
-                        id: string
-                    }
-                }
-            }) => {
-                await updateUserPlan(userId, subscription.plan.id)
-            },
             use: [
                 checkout({
                     products: [
