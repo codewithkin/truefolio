@@ -4,6 +4,15 @@ import { PrismaClient } from "@/generated/prisma";
 import { magicLink } from "better-auth/plugins";
 import { sendMagicLink } from "@/helpers/email/sendVerificationLink";
 
+import { polar, checkout, portal, usage, webhooks } from "@polar-sh/better-auth";
+import { Polar } from "@polar-sh/sdk";
+import { updateUserPlan } from "@/actions/payments/updateUserPlan";
+
+const polarClient = new Polar({
+    accessToken: process.env.POLAR_ACCESS_TOKEN,
+    server: process.env.NODE_ENV === "production" ? "production" : "sandbox" // We're in test mode for now
+});
+
 const prisma = new PrismaClient();
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
@@ -14,6 +23,40 @@ export const auth = betterAuth({
             sendMagicLink: async ({ email, url, token }, request) => {
                 await sendMagicLink({ email, token, url }, request)
             }
+        }),
+        polar({
+            client: polarClient,
+            createCustomerOnSignUp: true,
+            onSuccess: async ({ userId, subscription }: {
+                userId: string, subscription: {
+                    plan: {
+                        id: string
+                    }
+                }
+            }) => {
+                await updateUserPlan(userId, subscription.plan.id)
+            },
+            use: [
+                checkout({
+                    products: [
+                        {
+                            productId: "123-456-789", // ID of Product from Polar Dashboard
+                            slug: "pro" // Custom slug for easy reference in Checkout URL, e.g. /checkout/pro
+                        }
+                    ],
+                    successUrl: "/payments/success?checkout_id={CHECKOUT_ID}",
+                    authenticatedUsersOnly: true
+                }),
+                portal(),
+                usage(),
+                //                 webhooks({
+                //                     secret: process.env.POLAR_WEBHOOK_SECRET,
+                //                     onCustomerStateChanged: (payload) => // Triggered when anything regarding a customer changes
+                //                         onOrderPaid: (payload) => // Triggered when an order was paid (purchase, subscription renewal, etc.)
+                //                     ...  // Over 25 granular webhook handlers
+                // onPayload: (payload) => // Catch-all for all events
+                //                 })
+            ],
         })
     ],
     socialProviders: {
