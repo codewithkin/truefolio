@@ -9,6 +9,9 @@ import { useMutation } from "@tanstack/react-query";
 import { postJSON } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { useOnboardingStore } from "@/stores/onboardingStore";
+import { useState } from "react";
+import { UploadButton } from "@/utils/uploadthing";
+import { toast } from "sonner";
 
 interface Values {
     name: string;
@@ -22,6 +25,10 @@ const validationSchema = Yup.object({
 
 export default function Step1Form() {
     const router = useRouter();
+
+    // Track the value of profile picture and header picture
+    const [profilePicture, setProfilePicture] = useState<string | null>(null);
+    const [headerPicture, setHeaderPicture] = useState<string | null>(null);
 
     const step = useOnboardingStore((state: any) => state.step);
     const setStep = useOnboardingStore((state: any) => state.setStep);
@@ -39,6 +46,21 @@ export default function Step1Form() {
         >
             {({ isSubmitting }) => (
                 <Form className="space-y-6">
+                    <div>
+                    <UploadButton
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(res: any) => {
+                        // Do something with the response
+                        console.log("Files: ", res);
+                        toast.success("Upload Completed");
+                        }}
+                        onUploadError={(error: Error) => {
+                        // Do something with the error.
+                        toast.error(`ERROR! ${error.message}`);
+                        }}
+                    />
+                    </div>
+
                     <div>
                         <label className="block text-sm font-medium">Name</label>
                         <Field name="name" as={Input} />
